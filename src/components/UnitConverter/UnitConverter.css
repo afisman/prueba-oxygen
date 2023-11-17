@@ -1,0 +1,31 @@
+.converter {
+    display: flex;
+    justify-content: center;
+}
+
+.converter_box {
+    width: 50%;
+    background-color: var(--main-bg-color);
+    color: #FFF;
+    border-radius: 21px;
+}
+
+.converter_box_input {
+    margin: 1rem;
+}
+
+.converter_box_input_select select,
+.converter_box_input_amount input {
+    background-color: var(--main-bg-color);
+    color: #FFF;
+    border: none;
+    border-bottom: 1px solid #FFF;
+}
+
+.converter_box_input_amount input {
+    width: 50%;
+}
+
+.converter_box_input_amount input::placeholder {
+    color: #FFF;
+}
