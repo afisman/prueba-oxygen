@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { GoArrowSwitch } from "react-icons/go";
+
 
 import './UnitConverter.css'
 
@@ -47,7 +50,31 @@ const UnitConverter = () => {
         },
     ]
 
+    const saveConversion = () => {
+        setConversionUnits(0);
+        setInput(0)
+        setConversionResult(0);
+    }
 
+    const reverseConversion = () => {
+        if (conversionUnitsList[conversionUnits].from === 'miles') {
+            setConversionUnits(0);
+        } else if (conversionUnitsList[conversionUnits].from === 'km') {
+            setConversionUnits(1);
+        } else if (conversionUnitsList[conversionUnits].from === 'meters') {
+            setConversionUnits(2);
+
+        } else if (conversionUnitsList[conversionUnits].from === 'feet') {
+            setConversionUnits(3);
+
+        } else if (conversionUnitsList[conversionUnits].from === 'inches') {
+            setConversionUnits(4);
+        }
+        else if (conversionUnitsList[conversionUnits].from === 'cm') {
+            setConversionUnits(5);
+        }
+
+    }
 
     const handleConversion = (e) => {
         const result = e * conversionUnitsList[conversionUnits].conversionRate;
@@ -56,7 +83,7 @@ const UnitConverter = () => {
     }
     useEffect(() => {
         handleConversion(input);
-    }, [input])
+    }, [input, conversionUnits])
 
     return (
         <div className='converter'>
@@ -66,7 +93,7 @@ const UnitConverter = () => {
                 </div>
                 <div className='converter_box_input'>
                     <div className='converter_box_input_select'>
-                        <select name="distance" onChange={e => setConversionUnits(e.target.value)}>
+                        <select name="distance" value={conversionUnits} onChange={e => setConversionUnits(e.target.value)}>
                             <option value="0" >km - miles</option>
                             <option value="1">miles - km</option>
                             <option value="2">feet - meters</option>
@@ -74,6 +101,7 @@ const UnitConverter = () => {
                             <option value="4">cm - inches</option>
                             <option value="5">inches - cm</option>
                         </select>
+                        <GoArrowSwitch className='converter_box_input_select_icon' onClick={() => reverseConversion()} />
                     </div>
                     <div className='converter_box_input_amount'>
                         <input type="number" value={input} onChange={e => setInput(e.target.value)} placeholder='0' />
@@ -82,7 +110,9 @@ const UnitConverter = () => {
                 </div>
                 <div className='converter_box_bottom'>
                     <div className='converter_box_bottom_icon'>
-
+                        <p onClick={() => saveConversion()}>
+                            <AiOutlineHeart />
+                        </p>
                     </div>
                     <div className='converter_box_bottom_result'>
                         {conversionResult}

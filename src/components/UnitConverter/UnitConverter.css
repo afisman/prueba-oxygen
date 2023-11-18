@@ -4,14 +4,46 @@
 }
 
 .converter_box {
-    width: 50%;
+    width: 717px;
+    height: 193px;
     background-color: var(--main-bg-color);
     color: #FFF;
     border-radius: 21px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .converter_box_input {
-    margin: 1rem;
+    margin: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.converter_box_input_select {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    margin-right: 2rem;
+    /* width: 254px;
+    height: 32px;
+    top: 179px;
+    left: 567px; */
+}
+
+.converter_box_input_select select {
+    width: 100%;
+}
+
+.converter_box_input_amount {
+    width: 50%;
+    display: flex;
+    margin-left: 2rem;
+    /* height: 22px;
+    top: 187px;
+    left: 894px; */
+
 }
 
 .converter_box_input_select select,
@@ -22,10 +54,25 @@
     border-bottom: 1px solid #FFF;
 }
 
+.converter_box_input_select_icon {
+    margin: 5px;
+}
+
 .converter_box_input_amount input {
-    width: 50%;
+    width: 100%;
 }
 
 .converter_box_input_amount input::placeholder {
     color: #FFF;
+}
+
+.converter_box_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 3rem;
+}
+
+.converter_box_bottom_icon p {
+    cursor: pointer;
 }
