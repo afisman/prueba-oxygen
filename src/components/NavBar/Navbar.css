@@ -1,0 +1,22 @@
+.navBar {
+    height: 48px;
+    margin-bottom: 2rem;
+    justify-self: center;
+    align-self: center;
+}
+
+.navBar_box {
+    display: flex;
+    align-items: center;
+    width: 717px;
+    margin: auto;
+}
+
+.navBar_title h1 {
+    font-size: 20px;
+}
+
+.navBar_icon p {
+    margin-right: 5px;
+    font-size: 20px;
+}

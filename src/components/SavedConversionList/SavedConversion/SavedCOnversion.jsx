@@ -1,9 +1,31 @@
-import React from 'react'
+import React from 'react';
+import { GoArrowRight, GoX } from "react-icons/go";
 
-const SavedCOnversion = () => {
+import './SavedConversion.css'
+
+
+const SavedConversion = ({ input, result, id, handleDeleteConversion }) => {
     return (
-        <div>SavedCOnversion</div>
+        <div className='savedConversion'>
+            <div className='savedConversion_box'>
+                <p>
+                    {input}
+                    <GoArrowRight />
+                    {' '}
+                    {result}
+                </p>
+
+                <p>
+                    <GoX
+                        className='savedConversion_box_icon_close'
+                        onClick={() => handleDeleteConversion(id)}
+                    />
+                </p>
+
+            </div>
+
+        </div>
     )
 }
 
-export default SavedCOnversion
+export default SavedConversion

@@ -12,6 +12,19 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    box-shadow: var(--main-box-shadow);
+}
+
+.converter_box_title {
+    align-self: flex-start;
+}
+
+.converter_box_title h1 {
+    /* font-family: Poppins, sans-serif; */
+    margin-left: 3rem;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
 }
 
 .converter_box_input {

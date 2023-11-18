@@ -1,0 +1,21 @@
+.savedConversion_box {
+    width: 349px;
+    height: 38px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #E3E3E3;
+    box-shadow: 0px 0px 2px 2px #0000001A;
+    color: #676767;
+    border-radius: 10px;
+}
+
+.savedConversion_box p {
+    font-weight: 400;
+    font-size: 14px;
+    margin: 1rem;
+}
+
+.savedConversion_box_icon_close {
+    cursor: pointer;
+}
