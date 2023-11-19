@@ -3,6 +3,7 @@
     margin-bottom: 2rem;
     justify-self: center;
     align-self: center;
+    box-shadow: 0px 2px 4px 0px #00000040;
 }
 
 .navBar_box {
@@ -14,9 +15,24 @@
 
 .navBar_title h1 {
     font-size: 20px;
+    font-weight: 900;
 }
 
 .navBar_icon p {
-    margin-right: 5px;
+    margin-right: 0.5rem;
     font-size: 20px;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width:540px) {
+    .navBar_box {
+        width: 100%;
+        margin-left: 1.5rem;
+    }
+}
+
+@media screen and (min-device-width: 541px) and (max-device-width:780px) {
+    .navBar_box {
+        width: 100%;
+        margin-left: 1.5rem;
+    }
 }

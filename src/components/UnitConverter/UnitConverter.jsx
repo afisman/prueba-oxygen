@@ -3,81 +3,37 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { GoArrowSwitch } from "react-icons/go";
 
 
+
 import './UnitConverter.css'
+import { useDispatch } from 'react-redux';
+import { conversionActions } from '../../redux/slices/conversionSlice';
 
-const UnitConverter = ({ conversionUnitsList, input, setInput, conversionResult, setConversionResult, conversionUnits, setConversionUnits, saveConversion }) => {
+const UnitConverter = ({ conversionUnitsList, input, setInput, conversionResult, setConversionResult, conversionUnits, setConversionUnits, reverseConversion }) => {
 
-    // const [conversionUnits, setConversionUnits] = useState(0);
-    // const [input, setInput] = useState(0);
-    // const [conversionResult, setConversionResult] = useState(0);
 
-    // const conversionUnitsList = [
-    //     {
-    //         index: 0,
-    //         from: 'km',
-    //         to: 'miles',
-    //         conversionRate: 0.6213711922
-    //     },
-    //     {
-    //         index: 1,
-    //         from: 'miles',
-    //         to: 'km',
-    //         conversionRate: 1.609344
-    //     },
-    //     {
-    //         index: 2,
-    //         from: 'feet',
-    //         to: 'meters',
-    //         conversionRate: 0.3048
-    //     },
-    //     {
-    //         index: 3,
-    //         from: 'meters',
-    //         to: 'feet',
-    //         conversionRate: 3.2808399
-    //     },
-    //     {
-    //         index: 4,
-    //         from: 'cm',
-    //         to: 'inches',
-    //         conversionRate: 0.3937007874
-    //     },
-    //     {
-    //         index: 5,
-    //         from: 'inches',
-    //         to: 'cm',
-    //         conversionRate: 2.54
-    //     },
-    // ]
 
-    // const saveConversion = () => {
-    //     setConversionUnits(0);
-    //     setInput(0)
-    //     setConversionResult(0);
-    // }
+    const dispatch = useDispatch();
 
-    const reverseConversion = () => {
-        if (conversionUnitsList[conversionUnits].from === 'miles') {
-            setConversionUnits(0);
-        } else if (conversionUnitsList[conversionUnits].from === 'km') {
-            setConversionUnits(1);
-        } else if (conversionUnitsList[conversionUnits].from === 'meters') {
-            setConversionUnits(2);
-
-        } else if (conversionUnitsList[conversionUnits].from === 'feet') {
-            setConversionUnits(3);
-
-        } else if (conversionUnitsList[conversionUnits].from === 'inches') {
-            setConversionUnits(4);
+    const saveConversion = () => {
+        const newSavedConversion = {
+            input: `${input} ${conversionUnitsList[conversionUnits].from}`,
+            result: `${conversionResult} ${conversionUnitsList[conversionUnits].to}`,
+            id: window.self.crypto.randomUUID()
         }
-        else if (conversionUnitsList[conversionUnits].from === 'cm') {
-            setConversionUnits(5);
-        }
-
+        dispatch(conversionActions.saveConversion(newSavedConversion))
+        setInput(0)
     }
 
+
+
     const handleConversion = (e) => {
-        const result = e * conversionUnitsList[conversionUnits].conversionRate;
+        let strNum = e.toString();
+        let newNumber = e;
+        if (strNum[0] === '0' && strNum[1] !== '.' && strNum.length > 1) {
+            newNumber = Number(e.toString().substring(1));
+            setInput(newNumber);
+        }
+        const result = newNumber * conversionUnitsList[conversionUnits].conversionRate;
         const fixedResult = result.toFixed(2);
         setConversionResult(fixedResult);
     }
@@ -95,7 +51,7 @@ const UnitConverter = ({ conversionUnitsList, input, setInput, conversionResult,
                 </div>
                 <div className='converter_box_input'>
                     <div className='converter_box_input_select'>
-                        <select name="distance" value={0} onChange={e => setConversionUnits(e.target.value)}>
+                        <select name="distance" value={conversionUnits} onChange={e => setConversionUnits(e.target.value)}>
                             <option value="0" >km - miles</option>
                             <option value="1">miles - km</option>
                             <option value="2">feet - meters</option>
@@ -106,7 +62,7 @@ const UnitConverter = ({ conversionUnitsList, input, setInput, conversionResult,
                         <GoArrowSwitch className='converter_box_input_select_icon' onClick={() => reverseConversion()} />
                     </div>
                     <div className='converter_box_input_amount'>
-                        <input type="number" value={input} onChange={e => setInput(e.target.value)} placeholder='0' />
+                        <input type="number" value={input} onChange={e => setInput(e.target.value)} />
                         {conversionUnitsList[conversionUnits].from}
                     </div>
                 </div>
@@ -117,7 +73,12 @@ const UnitConverter = ({ conversionUnitsList, input, setInput, conversionResult,
                         </p>
                     </div>
                     <div className='converter_box_bottom_result'>
-                        {conversionResult}
+                        <p className='converter_box_bottom_result_number'>
+                            {conversionResult}
+                        </p>
+                        <p className='converter_box_bottom_result_unit'>
+                            {conversionUnitsList[conversionUnits].to}
+                        </p>
                     </div>
                 </div>
             </div>

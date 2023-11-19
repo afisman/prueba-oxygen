@@ -20,7 +20,6 @@
 }
 
 .converter_box_title h1 {
-    /* font-family: Poppins, sans-serif; */
     margin-left: 3rem;
     font-weight: 600;
     font-size: 24px;
@@ -39,10 +38,6 @@
     align-items: center;
     width: 50%;
     margin-right: 2rem;
-    /* width: 254px;
-    height: 32px;
-    top: 179px;
-    left: 567px; */
 }
 
 .converter_box_input_select select {
@@ -53,10 +48,6 @@
     width: 50%;
     display: flex;
     margin-left: 2rem;
-    /* height: 22px;
-    top: 187px;
-    left: 894px; */
-
 }
 
 .converter_box_input_select select,
@@ -64,7 +55,7 @@
     background-color: var(--main-bg-color);
     color: #FFF;
     border: none;
-    border-bottom: 1px solid #FFF;
+    border-bottom: 2px solid #FFF;
 }
 
 .converter_box_input_select_icon {
@@ -86,6 +77,87 @@
     margin: 0 3rem;
 }
 
+
 .converter_box_bottom_icon p {
     cursor: pointer;
+    font-size: 24px;
+}
+
+.converter_box_bottom_result {
+    display: flex;
+    align-items: center;
+}
+
+
+.converter_box_bottom_result_number {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+}
+
+.converter_box_bottom_result_unit {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-left: 0.5rem;
+}
+
+
+@media screen and (min-device-width: 320px) and (max-device-width:540px) {
+
+    .converter {
+        margin: 1rem;
+    }
+
+    .converter_box {
+        width: 100%;
+        height: auto;
+    }
+
+    .converter_box_title {
+        position: relative;
+        margin-top: 1rem;
+    }
+
+    .converter_box_title h1 {
+        margin-left: 2.5rem;
+    }
+
+    .converter_box_input {
+        flex-direction: column;
+        margin: 1rem;
+    }
+
+    .converter_box_input_select {
+        width: 90%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .converter_box_input_amount {
+        width: 90%;
+        margin-left: 0;
+    }
+
+    .converter_box_bottom {
+        margin: 0 2rem;
+    }
+}
+
+@media screen and (min-device-width: 541px) and (max-device-width:780px) {
+    .converter_box {
+        width: 90%;
+    }
+
+    .converter_box_input_select {
+
+        margin-right: 1rem;
+    }
+
+
+
+    .converter_box_input_amount {
+
+        margin-left: 1rem;
+    }
 }

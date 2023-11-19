@@ -10,6 +10,7 @@ const SavedConversion = ({ input, result, id, handleDeleteConversion }) => {
             <div className='savedConversion_box'>
                 <p>
                     {input}
+                    {' '}
                     <GoArrowRight />
                     {' '}
                     {result}

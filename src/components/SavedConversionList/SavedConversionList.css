@@ -1,0 +1,40 @@
+.saved {
+    display: flex;
+    justify-content: center;
+}
+
+.saved_box {
+    display: flex;
+    flex-direction: column;
+    width: 717px;
+}
+
+.saved_box p {
+    align-self: flex-start;
+}
+
+.saved_box_list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width:540px) {
+    .saved {
+        margin: 1rem;
+    }
+
+    .saved_box {
+        width: 100%;
+    }
+
+    .saved_box_list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (min-device-width: 541px) and (max-device-width:780px) {
+    .saved_box {
+        width: 90%;
+    }
+}

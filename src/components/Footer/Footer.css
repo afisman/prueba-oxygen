@@ -11,5 +11,20 @@
 }
 
 .footer p {
-    margin: 50px;
+    margin: 2rem;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
 }
+
+@media screen and (min-device-width: 320px) and (max-device-width:540px) {
+    .footer {
+        width: 100%;
+    }
+}
+
+/* @media screen and (min-device-width: 541px) and (max-device-width:780px) {
+    .footer {
+        width: 100%;
+    }
+} */

@@ -3,26 +3,15 @@ import Footer from './components/Footer/Footer';
 import Navbar from './components/NavBar/Navbar';
 import SavedConversionList from './components/SavedConversionList/SavedConversionList';
 import UnitConverter from './components/UnitConverter/UnitConverter';
-import { createStore } from 'redux';
-import { Provider, connect, useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 
-// const conversionReducer = function(state = [], action) {
-//   switch (action.type) {
-//     case 'Add':
-//       return state.push()
-//   }
-// }
-
-// const store = createStore(conversionReducer)
 
 function App() {
 
   const [conversionUnits, setConversionUnits] = useState(0);
   const [input, setInput] = useState(0);
   const [conversionResult, setConversionResult] = useState(0);
-  const [savedConversionsArr, setSavedConversionsArr] = useState([])
 
   const conversionUnitsList = [
     {
@@ -63,28 +52,30 @@ function App() {
     },
   ]
 
-  const saveConversion = () => {
-    const newSavedConversion = {
-      input: `${input} ${conversionUnitsList[conversionUnits].from}`,
-      result: `${conversionResult} ${conversionUnitsList[conversionUnits].to}`,
-      id: window.self.crypto.randomUUID()
+  const reverseConversion = () => {
+    if (conversionUnitsList[conversionUnits].from === 'miles') {
+      setConversionUnits(0);
+    } else if (conversionUnitsList[conversionUnits].from === 'km') {
+      setConversionUnits(1);
+    } else if (conversionUnitsList[conversionUnits].from === 'meters') {
+      setConversionUnits(2);
+
+    } else if (conversionUnitsList[conversionUnits].from === 'feet') {
+      setConversionUnits(3);
+
+    } else if (conversionUnitsList[conversionUnits].from === 'inches') {
+      setConversionUnits(4);
     }
-    setSavedConversionsArr([...savedConversionsArr, newSavedConversion])
-    setConversionUnits(0);
-    setInput(0)
-    setConversionResult(0);
+    else if (conversionUnitsList[conversionUnits].from === 'cm') {
+      setConversionUnits(5);
+    }
   }
-
-  const handleDeleteConversion = (id) => {
-    setSavedConversionsArr(savedConversionsArr.filter(conversion => conversion.id !== id))
-  }
-
-
 
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar reverseConversion={reverseConversion}
+      />
       <UnitConverter
         conversionUnitsList={conversionUnitsList}
         input={input}
@@ -93,12 +84,9 @@ function App() {
         setConversionResult={setConversionResult}
         conversionUnits={conversionUnits}
         setConversionUnits={setConversionUnits}
-        saveConversion={saveConversion}
+        reverseConversion={reverseConversion}
       />
-      <SavedConversionList
-        savedConversionsArr={savedConversionsArr}
-        handleDeleteConversion={handleDeleteConversion}
-      />
+      <SavedConversionList />
       <Footer />
     </div>
   );
